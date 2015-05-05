@@ -1,0 +1,358 @@
+@import "normalize";
+@import "fontello";
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; height: 100%; }
+
+body {
+    color: #ccc;
+    background: #222;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    // hack for text scaling on ios/landscape
+    -webkit-text-size-adjust: 100%;
+}
+
+a {
+    color: #fff;
+}
+
+.link {
+    cursor: pointer;
+    &:hover {
+        color: #fff;
+        /*border-bottom: 1px solid white;*/
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.download-action {
+    position: relative;
+}
+.download-progress {
+    position: absolute;
+    border-bottom: 1px solid white;
+    width: 100%;
+    box-shadow: 0 0 8px 0px #fff;
+    animation: progress-animation 0.7s infinite;
+    animation-timing-function: linear;
+    transform: translateX(25%) scale(0.5, 1);
+}
+
+@keyframes progress-animation {
+  0%   { transform: translateX(-25%) scale(0.5, 1); }
+  33%   { transform: translateX(25%) scale(0.5, 1); }
+  66%   { transform: translateX(50%) scale(0.0, 1); }
+  67%   { transform: translateX(-50%) scale(0.0, 1); }
+  100%   { transform: translateX(-25%) scale(0.5, 1); }
+}
+
+
+h1 {
+    font-weight: 400;
+}
+
+select { color: #333; max-width: 100% }
+
+canvas {
+    max-width: 100%;
+}
+
+.button {
+    border: 1px solid #666;
+    padding: 0.5em;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.app {
+    padding: 0 1em;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    
+    label > input {
+        margin-left: 1em;
+        text-align: right;
+    }
+}
+.app-header {
+    margin: 0;
+    h1 {
+        display: inline;
+        line-height: 2em;
+        font-size: 1.75em;
+        margin: 0 1em 0 0;
+    }
+    .logo {
+        height: 1.75em;
+        margin: 0 0.5em -4px 0;
+    }
+    .link {
+        font-size: 1.25em;
+        margin-right: 1em;
+        display: inline-block;
+    }
+    .icon {
+        font-size: 2em;
+        display: none;
+        color: #fff;
+        width: 2em;
+        display: none;
+        line-height: 1.8em;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
+.upload-action {
+    position: relative;
+    cursor: pointer;
+    input {
+        position: absolute;
+        cursor: pointer;
+        font-size: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+}
+
+.help-action {
+    cursor: pointer;
+}
+
+.app-content {
+    display: flex;
+    flex: 1;
+    /*max-height: 100%;*/
+}
+.app-content >* {
+    flex-basis: 100%;
+    background: #444;
+}
+.dialog {
+    max-width: 100em;
+    overflow: auto;
+    margin: auto;
+    padding: 2em;
+    .action {
+        text-align:center;
+    }
+    .button {
+        display: inline-block;
+    }
+}
+
+.download {
+    text-align: center;
+}
+.download-image {
+    img {
+        max-width: 30%;
+        margin: auto;
+    }
+}
+
+
+.editor {
+    display:flex;
+}
+
+.editor-photo {
+    background: #333;
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    flex-basis: 100%;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    /*align-content: center;*/
+}
+.editor-sidebar {
+    position: relative;
+    min-width: 15em;
+    width: 20%;
+}
+.editor-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1em;
+    overflow: auto;
+    .help-action {
+        font-size: 0.75em;
+        vertical-align: top;
+    }
+    &>p {
+        margin: 1em 0 0.25em 0;
+        font-size: 1.25em;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    select,input {
+        width: 100%;
+    }
+}
+
+.editor-control-bypass {
+    cursor: pointer;
+}
+.editor-control-bypass-on, .editor-control-bypass-off {
+    display: flex;
+}
+.editor-control-bypass-text {
+    flex: 1;
+}
+
+.editor-control-selector {
+    max-height: calc(100vh - 100%);
+    bottom: 2.8em;
+    left: 6px;
+    padding: 0 1em 0 4px;
+    position: absolute;
+    background: #111;
+    line-height: 2.5em;
+    overflow: auto;
+    box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+.editor-control-selector-item {
+    cursor: pointer;
+    font-size: 1.25em;
+}
+
+.photo-frame {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    canvas {
+        width: 100%;
+        border: 1em solid white;
+        display: block;
+        box-sizing: content-box;
+        box-shadow: 0 0 60px 20px rgba(0, 0, 0, 0.4);
+    }
+}
+
+.photo-rendering {
+    position: absolute;
+    text-align: center;
+    margin: auto;
+    margin-left: -5%;
+    width: 10%;
+    top: 75%;
+    left: 50%;
+    color: #fff;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+@media all and (max-width: 767px) {
+    body { 
+        font-size: 14px;
+        .app {
+            padding: 0;
+        }
+        .fb-like {
+            display: none;
+        }
+        .app-header {
+            font-size: 0.75em;
+            display:flex;
+            justify-content: space-between;
+            align-items: baseline;
+            .logo {
+                display: none;
+            }
+            h1 {
+                align-self: flex-start;
+                margin-left: 0.5em;
+            }
+            .link {
+                display: none;
+            }
+            .icon {
+                display: inline-block;
+            }
+        }
+        .app-footer {
+            display: none;
+        }
+        .editor {
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .editor-photo {
+            flex: 1;
+        }
+        .editor-sidebar {
+            width: 100%;
+        }
+        .editor-controls {
+                /*margin: 0.5em;*/
+            position: static;
+            padding: 4px 10px;
+            overflow: visible;
+            display: flex;
+            align-items: center;
+            // it messes with the click target too badly
+            .help-action {
+                display: none;
+            }
+            .editor-control {
+                flex: 1;
+                &.editor-control-selected { display: flex; }
+                display: none;
+                align-items: center;
+                justify-content: space-between;
+                height: 2em;
+                p {
+                    font-size: 1.25em;
+                    cursor: pointer;
+                    &:after {
+                        font-family: "fontello";
+                        content: '\e807';
+                        width: 1em;
+                        padding: 0 1em 0 0.5em;
+                    }
+                    margin: 0 1em 0 0;
+                }
+                input {
+                    flex: 1;
+                    line-height:2em;
+                    display: block;
+                }
+            }
+            .editor-control-bypass {
+                order: 2;
+                padding-left: 1em;
+            }
+            .editor-control-bypass-text {
+                display: none;
+            }
+        }
+        .photo-frame {
+            canvas {
+                box-shadow: none;
+                border: 0 solid white;
+                flex: none;
+            }
+        }
+    }
+}

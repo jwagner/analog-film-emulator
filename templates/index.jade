@@ -1,0 +1,141 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        link(href='http://fonts.googleapis.com/css?family=Open+Sans:300,400', rel='stylesheet', type='text/css')
+        link(rel='stylesheet', href='app.css')
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
+        link(rel="favicon" href="logo-256.png")
+        link(rel="icon" sizes="256x256" href="logo-256.png")
+        link(rel="icon" sizes="192x192" href="logo-192.png")
+        link(rel="icon" sizes="128x128" href="logo-128.png")
+        link(rel="apple-touch-icon-precomposed" sizes="180x180" href="logo-180.png")
+        title Free Online Analog Film Emulator - 29a.ch
+        meta(name="apple-mobile-web-app-capable" content="yes")
+        meta(name="apple-mobile-web-app-status-bar-style" content="black")
+        meta(name="mobile-web-app-capable" content="yes")
+        meta(property="og:type" content="website")
+        meta(property="og:description" content="A free online tool to simulate that classic analog film on photos from your digital camera.")
+        meta(name="description" content="A free online tool to simulate that classic analog film on photos from your digital camera.")
+        meta(property="og:title" content="Free Online Analog Film Emulator")
+        meta(property="og:url" content="http://29a.ch/film-emualtor/")
+        meta(property="og:image" content="http://29a.ch/film-emualtor/image.jpg")
+        meta(name='robots', content='noindex, nofollow')
+        link(rel='canonical', href='http://29a.ch/film-emulator/')
+    body
+        .app
+            .app-header
+                img.logo(src='logo-32.png' srcset='logo-64.png 2x, logo-128.png 4x')
+                h1 Film Simulator
+                .upload-action.link
+                    | Open File
+                    input(type='file', name='file', accept='image/*')
+                .upload-action.icon
+                    .icon-picture
+                    input(type='file', name='file', accept='image/*')
+                .download-action.link
+                    | Download 
+                    .download-progress(style='display:none')
+                .download-action.icon
+                    .icon-download-1
+                    .download-progress(style='display:none')
+                .settings-action.link
+                    | Settings
+                .settings-action.icon
+                    .icon-cog
+                .help-action.link
+                    | Help
+                .help-action.icon
+                    .icon-help-circled
+                div(class="fb-like" data-href="http://29a.ch/film-emulator/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true")
+            .app-content
+                .editor
+                    .editor-photo
+                        .photo-frame
+                            .photo-rendering(style='display: none')
+                                | rendering...
+                            canvas.photo-canvas
+                    .editor-sidebar
+                        .editor-controls
+                            .editor-control-bypass
+                                .editor-control-bypass-on(style='display:none')
+                                    span.editor-control-bypass-text Show After
+                                    span.icon-eye-off
+                                .editor-control-bypass-off
+                                    span.editor-control-bypass-text Show Before
+                                    span.icon-eye
+                            .editor-control-selector
+                                .editor-control-selector-item(data-control='film')
+                                    | Film
+                                .editor-control-selector-item(data-control='brightness')
+                                    | Brightness
+                                .editor-control-selector-item.editor-control-advanced(data-control='blacks')
+                                    | Blacks
+                                .editor-control-selector-item(data-control='contrast')
+                                    | Contrast
+                                .editor-control-selector-item.editor-control-advanced(data-control='temperature')
+                                    | Temperature
+                                .editor-control-selector-item.editor-control-advanced(data-control='saturation')
+                                    | Saturation
+                                .editor-control-selector-item(data-control='vibrance')
+                                    | Vibrance
+                                .editor-control-selector-item(data-control='grain')
+                                    | Grain
+                                .editor-control-selector-item(data-control='vignette')
+                                    | Vignette
+
+                .settings.dialog(style='display: none;')
+                    p
+                        label JPEG Export Quality
+                            input(name='jpegQuality' type='number' value=90 min=50 max=100 step=1)
+                    p
+                        label High Quality Preview (very slow)
+                            input(name='highQualityPreview' type='checkbox' value='true')
+                    p
+                        label Show advanced controls
+                            input(name='showAdvancedControls' type='checkbox' value='true')
+                    p
+                        .button.editor-action Close
+
+
+                .download.dialog(style='display: none;')
+                    p.download-touch
+                        | Tap and hold the image below and then select 'Save Image' to download it.
+                    p.download-mouse
+                        | Right click or drag and drop the image below to save it.
+                    p
+                        .download-image
+                    p
+                        .button.editor-action Close
+
+                .help.dialog(style='display:none')
+                    p
+                        | This is a little toy made by <a href="http://29a.ch/">Jonas Wagner</a>.
+                    p
+                        | The film emulation color look up tables are based on the ones found in
+                        | <a href="http://gmic.eu/film_emulation/">G'MIC</a>
+                        | by 
+                        | <a href="http://blog.patdavid.net/2013/09/film-emulation-presets-in-gmic-gimp.html">Patrick David</a>.
+
+                    p
+                        |<strong>Disclamer</strong>: The trademarked names which may appear in the names of the film emulation CLUT (color lookup table) are there for informational purposes only. They serve only to inform the user which film stock the given CLUT is designed to approximate. As there is no way to convey this information other than by using the trademarked name, we believe this constitutes fair use. Neither the publisher nor the authors are affiliated with or endorsed by the companies that own the trademarks.
+                    .action
+                        .button.editor-action Close
+
+            //.app-footer
+            //    p
+            //        | This is at little toy made by <a href="http://29a.ch/">Jonas Wagner</a>.
+            //        | You can read more about it in this blog post.
+        script(src='app.js')
+        script
+            | var _gaq = _gaq || [];
+            | _gaq.push(['_setAccount', 'UA-5205069-2']);
+            | _gaq.push(['_setDomainName', '29a.ch']);
+            | _gaq.push(['_setSiteSpeedSampleRate', 50]);
+            | _gaq.push(['_trackPageview']);
+        script(src="//www.google-analytics.com/ga.js" async=true)
+        #fb-root
+        script#facebook-jssdk(src='//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=829086800516580' async defer)
+        script(src="https://apis.google.com/js/platform.js" async defer)
+

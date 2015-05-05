@@ -1,0 +1,46 @@
+{
+  "name": "film",
+  "version": "0.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonas Wagner <jonas@29a.ch> (http://29a.ch/)",
+  "license": "-",
+  "devDependencies": {
+    "underscore": "~1.8.3",
+    "bluebird": "~2.9.25",
+    "source-map-support": "~0.2.10",
+    "jquery": "~2.1.4",
+    "grunt-contrib-connect": "~0.10.1",
+    "grunt": "~0.4.5",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-browserify": "~3.8.0",
+    "grunt-sass": "~0.18.1",
+    "grunt-rsync": "~0.6.2",
+    "babelify": "~6.0.2",
+    "grunt-contrib-copy": "~0.8.0",
+    "grunt-contrib-cssmin": "~0.12.2",
+    "grunt-contrib-uglify": "~0.9.1",
+    "grunt-contrib-compress": "~0.13.0",
+    "request": "~2.55.0",
+    "grunt-text-replace": "~0.4.0",
+    "grunt-shell": "~1.1.2",
+    "chai-spies": "~0.6.0",
+    "sinon-chai": "~2.7.0",
+    "sinon": "~1.14.1",
+    "chai": "~2.3.0",
+    "mocha": "~2.2.4",
+    "grunt-contrib-jade": "~0.14.1",
+    "chai-as-promised": "~5.0.0",
+    "simplex-noise": "~2.1.1",
+    "canvas-to-blob": "0.0.0",
+    "exif-js": "git://github.com/jseidelin/exif-js",
+    "grunt-autoprefixer": "~3.0.0"
+  },
+  "dependencies": {
+    "babel": "^5.4.7",
+    "console-polyfill": "~0.2.1"
+  }
+}
