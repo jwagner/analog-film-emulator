@@ -186,7 +186,7 @@ class ClutControl extends Control {
             .append(clut.index.map((category) => {
                 return $('<optgroup>')
                     .attr('label', category.name)
-                    .append(category.cluts.filter((clut) => !clut.name.match(/(\+|\-)$/)).map((clut) => {
+                    .append(category.cluts.filter((clut) => !clut.name.match(/(\+|\-)( Alt)?$/)).map((clut) => {
                         return $('<option>').text(clut.name).attr('value', clut.path);
                     }));
             }));

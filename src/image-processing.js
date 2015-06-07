@@ -208,7 +208,7 @@ export function mapColors(out, image, clut){
         cd = clut.data,
         cl = Math.floor(Math.pow(clut.width, 1/3)+0.001),
         cs = cl*cl,
-        cs2 = cs-2;
+        cs2 = cs-1;
 
     let r_min_g_min_b_min = [0, 0, 0],
         r_min_g_min_b_max = [0, 0, 0],
@@ -245,9 +245,9 @@ export function mapColors(out, image, clut){
 
             let t = b-b0;
             rgbLerp(r_min_g_min_b_min, r_min_g_min_b_min, r_min_g_min_b_max, t);
-            rgbLerp(r_min_g_max_b_min, r_min_g_max_b_min, r_min_g_min_b_max, t);
+            rgbLerp(r_min_g_max_b_min, r_min_g_max_b_min, r_min_g_max_b_max, t);
             rgbLerp(r_max_g_min_b_min, r_max_g_min_b_min, r_max_g_min_b_max, t);
-            rgbLerp(r_max_g_max_b_min, r_max_g_max_b_min, r_max_g_min_b_max, t);
+            rgbLerp(r_max_g_max_b_min, r_max_g_max_b_min, r_max_g_max_b_max, t);
 
             t = g-g0;
             rgbLerp(r_min_g_min_b_min, r_min_g_min_b_min, r_min_g_max_b_min, t);
