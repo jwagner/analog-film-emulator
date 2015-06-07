@@ -5,7 +5,7 @@
 This is a simple photo editor with an analog film emulation mode based on the color lookup tables by <a href="http://blog.patdavid.net/2013/09/film-emulation-presets-in-gmic-gimp.html">Pat David</a>.
 
 ## Where to start
-The interesting code is in src/image-processing.js. The rest is mostly ui and plumbing.
+The interesting code is in [src/image-processing.js](src/image-processing.js). The rest is mostly ui and plumbing.
 
 ## License
 
