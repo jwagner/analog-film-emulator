@@ -19,10 +19,11 @@ html(lang="en")
         meta(property="og:description" content="A free online tool to simulate that classic analog film on photos from your digital camera.")
         meta(name="description" content="A free online tool to simulate that classic analog film on photos from your digital camera.")
         meta(property="og:title" content="Free Online Analog Film Emulator")
-        meta(property="og:url" content="http://29a.ch/film-emualtor/")
-        meta(property="og:image" content="http://29a.ch/film-emualtor/image.jpg")
+        meta(property="og:url" content="http://29a.ch/film-emulator/")
+        meta(property="og:image" content="http://29a.ch/film-emulator/image.jpg")
         meta(name='robots', content='noindex, nofollow')
         link(rel='canonical', href='http://29a.ch/film-emulator/')
+        link(rel='prefetch' src='worker.js')
     body
         .app
             .app-header
@@ -48,7 +49,11 @@ html(lang="en")
                     | Help
                 .help-action.icon
                     .icon-help-circled
-                div(class="fb-like" data-href="http://29a.ch/film-emulator/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true")
+                .fb-like(data-href="http://29a.ch/film-emulator/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true")
+                .google-plus-one
+                    .g-plusone(data-size="medium")
+
+
             .app-content
                 .editor
                     .editor-photo

@@ -76,16 +76,25 @@ export default class Editor {
     }
     getCanvasSize(image) {
         let pixelRatio = Math.min(window.devicePixelRatio||1, 2),
-            padding = $(this.outputCanvas).css('border-width').charAt(0) != '0' ? 50 : 0,
-            availableW = Math.min((~~$('.editor-photo', this.el).innerWidth()-padding), 1024)*pixelRatio,
+            padding = $(this.outputCanvas).css('border-width').charAt(0) != '0' ? 50 : 0;
+
+        // we need to hide the output canvas so it doesn't stretch it's parent (.editor-photo)
+        $(this.outputCanvas).hide();
+
+        let availableW = Math.min((~~$('.editor-photo', this.el).innerWidth()-padding), 1024)*pixelRatio,
             availableH = Math.min((~~$('.editor-photo', this.el).innerHeight()-padding), 1024)*pixelRatio,
             scale = Math.min(availableW/image.width, availableH/image.height, 1),
             w = ~~(image.width * scale),
             h = ~~(image.height * scale);
-            if(isIos()){
-                w = Math.min(w, 1000);
-                h = Math.min(h, 1000);
-            }
+
+        $(this.outputCanvas).show();
+
+        if(isIos()){
+            w = Math.min(w, 1000);
+            h = Math.min(h, 1000);
+        }
+
+
         return [w, h, w/pixelRatio, h/pixelRatio];
     }
     render() {

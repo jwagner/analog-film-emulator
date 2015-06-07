@@ -6,6 +6,7 @@ This is a simple photo editor with an analog film emulation mode based on the co
 
 ## Where to start
 The interesting code is in [src/image-processing.js](src/image-processing.js). The rest is mostly ui and plumbing.
+You can also read my [blog post](http://29a.ch/2015/06/07/javascript-film-emulation/) about it.
 
 ## License
 

@@ -135,6 +135,8 @@ grunt.initConfig({
     uglify: {
         options: {
             report: 'min',
+            banner: '/* Source Code: <%= pkg.repository.url %> */\n',
+            screwIE8: true,
             //sourceMap: true,
             //mangle: false,
             //compress: false,

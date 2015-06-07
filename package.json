@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jonas Wagner <jonas@29a.ch> (http://29a.ch/)",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/jwagner/analog-film-emulator/"
+  },
   "license": "-",
   "devDependencies": {
     "underscore": "~1.8.3",

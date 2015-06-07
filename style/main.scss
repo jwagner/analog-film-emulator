@@ -263,14 +263,29 @@ canvas {
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
+.google-plus-one {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 1em;
+    line-height: 20px;
+    padding-top: 3px;
+}
+
+@media all and (max-width: 960px) {
+    .google-plus-one {
+        display: none !important;
+    }
+}
+@media all and (max-width: 880px) {
+    .fb-like {
+        display: none !important;
+    }
+}
 @media all and (max-width: 767px) {
     body { 
         font-size: 14px;
         .app {
             padding: 0;
-        }
-        .fb-like {
-            display: none;
         }
         .app-header {
             font-size: 0.75em;
