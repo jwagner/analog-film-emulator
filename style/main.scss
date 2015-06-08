@@ -271,6 +271,15 @@ canvas {
     padding-top: 3px;
 }
 
+.faq-question {
+    color: #fff;
+    margin-bottom: 0.5em;
+}
+.faq-answer {
+    margin-left: 1em;
+    margin-top: 0.5em;
+}
+
 @media all and (max-width: 960px) {
     .google-plus-one {
         display: none !important;

@@ -17,6 +17,7 @@ export default class App {
         this.settings = new Settings($('.settings', el));
         this.fileType = '';
         this.fileName = '';
+        this.content = 'editor';
 
         $(window).resize(_.debounce(() => this.editor.render(), 500));
         // hack to make title bar hideable on android
@@ -85,10 +86,13 @@ export default class App {
             this.fileName = file.name;
             loadImageFromBlob(file, true).then((image) => {
                 this.editor.setImage(image);
+                this.showContent('editor');
             });
         }
     }
     showContent(name){
+        if(name === this.content) name = 'editor';
+        this.content = name;
         $('.app-content>*', this.el).hide();
         $('.app-content>.' + name, this.el).show();
         if(name === 'editor') this.editor.render();
