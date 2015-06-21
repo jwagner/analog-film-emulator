@@ -1,4 +1,4 @@
-# A Analog Film Emulator in Javascript
+# An Analog Film Emulator in Javascript
 [![Example](http://29a.ch/film-emulator/image.jpg)](http://29a.ch/film-emulator/)
 [Try it out on 29a.ch/film-emulator/](http://29a.ch/film-emulator/)
 
