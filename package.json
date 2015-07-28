@@ -8,8 +8,8 @@
   },
   "author": "Jonas Wagner <jonas@29a.ch> (http://29a.ch/)",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/jwagner/analog-film-emulator/"
+    "type": "git",
+    "url": "https://github.com/jwagner/analog-film-emulator/"
   },
   "license": "-",
   "devDependencies": {
@@ -44,6 +44,7 @@
     "grunt-autoprefixer": "~3.0.0"
   },
   "dependencies": {
+    "alea": "0.0.9",
     "babel": "^5.4.7",
     "console-polyfill": "~0.2.1"
   }

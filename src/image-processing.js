@@ -1,4 +1,5 @@
 import SimplexNoise from 'simplex-noise';
+import Alea from 'alea';
 
 // From http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/
 function colorTemperatureToRGB(temperature){
@@ -68,7 +69,7 @@ export function dither(value){
 }
 
 export function addGrain(out, image, slice, scale, intensity){
-    let simplex = new SimplexNoise();
+    let simplex = new SimplexNoise(new Alea());
     console.time('addGrain');
     let od = out.data,
         id = image.data,
@@ -98,6 +99,43 @@ export function addGrain(out, image, slice, scale, intensity){
     }
     console.timeEnd('addGrain');
 }
+
+
+export function addLightLeak(out, image, slice, intensity, scale, seed){
+    let simplex = new SimplexNoise(new Alea(seed));
+    console.time('addLightLeak');
+    console.log(intensity, scale, seed);
+    let od = out.data,
+        id = image.data,
+        w = image.width,
+        h = image.height,
+        ox = slice.x,
+        oy = slice.y,
+        d = Math.min(slice.width, slice.height);
+
+    for(var y = 0; y < h; y++) {
+        for(var x = 0; x < w; x++) {
+            // reduce noise in shadows and highlights, 4 = no noise in pure black and white
+            let i = (y*w+x)*4,
+                rx = x + ox,
+                ry = y + oy,
+                noise = (simplex.noise2D(rx/d*scale, ry/d*scale) +
+                         simplex.noise2D(rx/d*scale/2, ry/d*scale/2)*0.25 +
+                         simplex.noise2D(rx/d*scale/4, ry/d*scale/4))*0.5,
+                r = (simplex.noise2D(rx/d*scale, ry/d*scale+1000))*0.5+1,
+                g = (simplex.noise2D(rx/d*scale+1000, ry/d*scale))*0.5+1,
+                b = (simplex.noise2D(rx/d*scale+1000, ry/d*scale+1000))*0.5+1;
+
+            noise *= noise;
+            noise *= intensity*255;
+            od[i] = id[i]+noise*r;
+            od[i+1] = id[i+1]+noise*g;
+            od[i+2] = id[i+2]+noise*b;
+        }
+    }
+    console.timeEnd('addLightLeak');
+}
+
 
 export function adjustTemperature(out, image, temperature){
     let od = out.data, id=image.data,
@@ -298,5 +336,8 @@ export function processImage(data, slice, options){
         else {
             mapColorsFast(data, data, options.clut);
         }
+    }
+    if(options.lightLeak && options.lightLeak.seed > 0){
+        addLightLeak(data, data, slice, options.lightLeak.intensity||1, options.lightLeak.scale, options.lightLeak.seed);
     }
 }

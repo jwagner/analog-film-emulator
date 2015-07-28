@@ -9,7 +9,7 @@ import {isSmall} from './responsive-helpers';
 class Controls {
     constructor(el) {
         this.el = el;
-        this.basicControls = ['clut', 'brightness', 'contrast', 'vibrance', 'grain', 'vignette'];
+        this.basicControls = ['clut', 'brightness', 'contrast', 'vibrance', 'grain', 'vignette', 'lightLeak'];
         this.inputs = [
             new ClutControl('clut', 'Film'),
             new RangeControl('brightness', 'Brightness', 0, 2, 1),
@@ -21,7 +21,11 @@ class Controls {
             new RangeControl('grain', 'Grain', 0, 0.5, 0),
             new RangeControl('grainScale', 'Grain Scale', 0.01, 2, 1),
             new RangeControl('vignette', 'Vignette', 0, 10, 0),
-            new RangeControl('vignetteRadius', 'Vignette Radius', 0.01, 2, 1)
+            new RangeControl('vignetteRadius', 'Vignette Radius', 0.01, 2, 1),
+            new RangeControl('lightLeak', 'Light Leak', 0, 2, 0),
+            new RangeControl('lightLeakIntensity', 'Light Leak Intensity', 0, 2, 1),
+            new RangeControl('lightLeakScale', 'Light Leak Scale', 0.25, 1, 4),
+
         ];
         this.inputsByName = _.indexBy(this.inputs, 'name');
 
@@ -64,6 +68,7 @@ class Controls {
         control.el.addClass('editor-control-selected');
     }
     setShowAdvancedControls(showAdvancedControls) {
+        this.showAdvancedControls = showAdvancedControls;
         let isBasic = (c) => this.basicControls.indexOf(c.name) > -1;
         for(let control of this.inputs){
             if(showAdvancedControls || isBasic(control)){

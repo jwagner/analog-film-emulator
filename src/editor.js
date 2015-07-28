@@ -53,7 +53,8 @@ export default class Editor {
         this.render();
     }
     getOptions(w, h){
-        let o = this.controls.options;
+        let o = this.controls.options,
+            basic = !this.controls.showAdvancedControls;
         return Promise.resolve(o.clut && o.clut !== 'clut/identity.png' && clut.get(o.clut)).cancellable().then((clut) => {
             return {
                 clut: clut,
@@ -70,6 +71,11 @@ export default class Editor {
                     radius: 0.4*(o.vignetteRadius||1),
                     falloff: Math.sqrt(1+Math.pow(Math.max(w,h)/Math.min(w,h), 2))*0.5-0.4,
                     intensity: Math.pow(2, o.vignette)
+                },
+                lightLeak: {
+                    seed: o.lightLeak,
+                    intensity: basic ? o.lightLeak : o.lightLeakIntensity,
+                    scale: o.lightLeakScale || 1
                 }
             };
         });
