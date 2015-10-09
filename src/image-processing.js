@@ -1,6 +1,4 @@
 import SimplexNoise from 'simplex-noise';
-import equalizeHistogram from './lib/equalize-histogram';
-import medianFilter from './lib/equalize-histogram';
 import Alea from 'alea';
 
 // From http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/
@@ -156,7 +154,7 @@ export function adjustTemperature(out, image, temperature){
     }
 }
 
-export function adjust(out, image, brightness, contrast, saturation, vibrance, blacks, pop) {
+export function adjust(out, image, brightness, contrast, saturation, vibrance, blacks) {
      console.time('adjust');
     var od = out.data, id=image.data,
         lr = 0.2126,
@@ -195,29 +193,9 @@ export function adjust(out, image, brightness, contrast, saturation, vibrance, b
         g += (g-0.5)*contrast;
         b += (b-0.5)*contrast;
 
-        var min = Math.min(r, g, b)*pop,
-            r_=r, g_=g, b_=b;
-        if(min < 1){
-            r_ = (r-min);
-            g_ = (g-min);
-            b_ = (b-min);
-        }
-        var max = Math.max(r_, g_, b_, 0);
-        if(max < 1){
-            r_ = r_/max;
-            g_ = g_/max;
-            b_ = b_/max;
-        }
-
-        r = r*(1-pop)+r_*pop;
-        g = g*(1-pop)+g_*pop;
-        b = b*(1-pop)+b_*pop;
-
-
         r *= brightness;
         g *= brightness;
         b *= brightness;
-
 
         od[i] = dither(r*255);
         od[i+1] = dither(g*255);
@@ -338,18 +316,9 @@ export function sample(out, cd, cs, r, g, b){
     out[2] = cd[ci+2];
 }
 
-function equalize(input, amount){
-    equalizeHistogram(input.data, 0, 4, amount);
-    equalizeHistogram(input.data, 1, 4, amount);
-    equalizeHistogram(input.data, 2, 4, amount);
-}
-
 export function processImage(data, slice, options){
-    if(options.equalize) {
-        equalize(data, options.equalize);
-    }
     if(options.brightness && options.brightness !== 1 || options.contrast || options.saturation || options.vibrance || options.temperature || options.blacks){
-        adjust(data, data, options.brightness||1, options.contrast||0, options.saturation||0, options.vibrance||0, options.blacks || 0, options.pop||0);
+        adjust(data, data, options.brightness||1, options.contrast||0, options.saturation||0, options.vibrance||0, options.blacks || 0);
     }
     if(options.temperature && options.temperature != 6500){
         adjustTemperature(data, data, options.temperature);
@@ -372,4 +341,3 @@ export function processImage(data, slice, options){
         addLightLeak(data, data, slice, options.lightLeak.intensity||1, options.lightLeak.scale, options.lightLeak.seed);
     }
 }
-

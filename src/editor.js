@@ -59,15 +59,12 @@ export default class Editor {
             return {
                 clut: clut,
                 highQuality: this.highQualityPreview,
-                equalize: o.equalize,
-                denoise: o.denoise,
                 brightness: o.brightness,
                 saturation: o.saturation,
                 contrast: o.contrast,
                 vibrance: o.vibrance,
                 blacks: o.blacks,
                 temperature: o.temperature,
-                pop: o.pop,
                 // divide grain scale by image scale so the preview more or less matches the original
                 grain: {scale: 1600*(o.grainScale||1), intensity: o.grain},
                 vignette: {

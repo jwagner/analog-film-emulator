@@ -56,7 +56,7 @@ export function exifOrient(img, orientation){
     let c = document.createElement('canvas'),
         ctx = c.getContext('2d'),
         w = ~~(img.naturalWidth||img.width),
-        h = ~~(img.naturalHeight||img.height);
+        h = ~~(img.naturalHeight||img.width);
 
     // set dimensions
     if(orientation < 5){

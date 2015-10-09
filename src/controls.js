@@ -9,17 +9,15 @@ import {isSmall} from './responsive-helpers';
 class Controls {
     constructor(el) {
         this.el = el;
-        this.basicControls = ['clut', 'brightness', 'contrast', 'equalize', 'vibrance', 'grain', 'vignette', 'lightLeak', 'denoise'];
+        this.basicControls = ['clut', 'brightness', 'contrast', 'vibrance', 'grain', 'vignette', 'lightLeak'];
         this.inputs = [
             new ClutControl('clut', 'Film'),
             new RangeControl('brightness', 'Brightness', 0, 2, 1),
             new RangeControl('blacks', 'Blacks', -0.5, 0.5, 0),
             new RangeControl('contrast', 'Contrast', -1, 1, 0),
-            new RangeControl('equalize', 'Equalize', -1, 1, 0),
             new RangeControl('temperature', 'Temperature', 3000, 25000, 6500, 1),
             new RangeControl('vibrance', 'Vibrance', -1, 1, 0),
             new RangeControl('saturation', 'Saturation', -1, 1, 0),
-            new RangeControl('pop', 'Pop', -0.5, 0.5, 0),
             new RangeControl('grain', 'Grain', 0, 0.5, 0),
             new RangeControl('grainScale', 'Grain Scale', 0.01, 2, 1),
             new RangeControl('vignette', 'Vignette', 0, 10, 0),
@@ -27,7 +25,6 @@ class Controls {
             new RangeControl('lightLeak', 'Light Leak', 0, 2, 0),
             new RangeControl('lightLeakIntensity', 'Light Leak Intensity', 0, 2, 1),
             new RangeControl('lightLeakScale', 'Light Leak Scale', 0.25, 1, 4),
-            new RangeControl('denoise', 'Denoise', 0, 1, 0)
 
         ];
         this.inputsByName = _.indexBy(this.inputs, 'name');
