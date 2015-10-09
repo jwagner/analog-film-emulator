@@ -265,10 +265,12 @@ canvas {
 
 .google-plus-one {
     display: inline-block;
-    vertical-align: middle;
     margin-left: 1em;
-    line-height: 20px;
-    padding-top: 3px;
+}
+
+.fb-like, .google-plus-one {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .faq-question {

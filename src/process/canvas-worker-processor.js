@@ -8,7 +8,7 @@ export default class CanvasWorkerProcessor extends CanvasProcessor {
         this.workers = new WorkerPool('worker.js');
     }
     static isSupported(){
-        return !!document.createElement('canvas').getContext && window.Worker && !navigator.userAgent.match('MSIE 10');
+        return false;//!!document.createElement('canvas').getContext && window.Worker && !navigator.userAgent.match('MSIE 10');
     }
     static supportedOptions(){
         return ['clut', 'brightness'];
