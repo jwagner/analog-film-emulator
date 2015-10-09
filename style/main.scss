@@ -267,6 +267,9 @@ canvas {
     display: inline-block;
     vertical-align: middle;
 }
+.fb-like {
+    margin-right: 1em;
+}
 
 .faq-question {
     color: #fff;
@@ -277,7 +280,7 @@ canvas {
     margin-top: 0.5em;
 }
 
-@media all and (max-width: 960px) {
+@media all and (max-width: 980px) {
     .google-plus-one {
         display: none !important;
     }
