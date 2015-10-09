@@ -265,7 +265,9 @@ canvas {
 
 .fb-like, .google-plus-one {
     display: inline-block;
-    vertical-align: middle;
+    &>*{
+        vertical-align: baseline !important;
+    }
 }
 .fb-like {
     margin-right: 1em;
