@@ -5,6 +5,7 @@ import Editor from './editor';
 import Settings from './settings';
 import {isTouch} from './responsive-helpers';
 import {loadImage, loadImageFromBlob} from './image-helpers';
+import {trackEvent} from './analytics';
 
 // this is the main ui class,
 // mostly taking care of wiring and plumbing for the main actions
@@ -37,6 +38,7 @@ export default class App {
         $('.download-action', el).click((e) => {
             $('.download-progress', el).show();
             let type = this.fileType == 'image/png' ? 'image/png' : 'image/jpeg';
+            trackEvent({action: 'download', interaction: true});
             this.editor.download(this.fileName || 'photo.jpg', type, this.settings.data.jpegQuality, ()=>{}).then((url) => {
                 // browser does not support triggering downloads
                 if(url){
@@ -85,6 +87,7 @@ export default class App {
             this.fileType = file.type;
             this.fileName = file.name;
             loadImageFromBlob(file, true).then((image) => {
+                trackEvent({action: 'open', interaction: true});
                 this.editor.setImage(image);
                 this.showContent('editor');
             });
@@ -92,6 +95,7 @@ export default class App {
     }
     showContent(name){
         if(name === this.content) name = 'editor';
+        trackEvent({action:'showContent', label: name, interaction: true});
         this.content = name;
         $('.app-content>*', this.el).hide();
         $('.app-content>.' + name, this.el).show();

@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import _ from 'underscore';
 import clut from './clut';
+import {trackEvent} from './analytics';
 import {isSmall} from './responsive-helpers';
 
 // performs a simple mapping from the html input elements
@@ -44,7 +45,12 @@ class Controls {
 
         this.setShowAdvancedControls(false);
         $(el).append(this.inputs.map((e) => e.el));
-        $('input,select', el).change((e) => this.change());
+        $('input,select', el).change((e) => {
+            if(e.target && e.target.name){
+                trackEvent({action: 'changeParameter', label: e.target.name, interaction: true}); 
+            }
+            return this.change();
+        });
 
         this.bypass = false;
         var bypassOn = $('.editor-control-bypass-on').click((e) => {
@@ -187,6 +193,7 @@ class ClutControl extends Control {
         super(name, text);
         //$(this.label).append('<span class=help-action>*</span>');
         this.input = $('<select class=clut-select>')
+            .attr('name', name)
             .append($('<option>').text('None').attr('value', 'clut/identity.png'))
             .append(clut.index.map((category) => {
                 return $('<optgroup>')

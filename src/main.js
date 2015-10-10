@@ -6,6 +6,7 @@ import $ from 'jquery';
 import App from './app';
 
 window.$ = $;
+window._gaq = window._gaq || [];
 
 // very little to see here, please move along
 $(function(){
