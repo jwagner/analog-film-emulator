@@ -176,17 +176,27 @@ export function adjust(out, image, brightness, contrast, saturation, vibrance, b
         b = Math.max(0, b-blacks);
 
         // vibrance
-        // red is overweighted to protect red tones (like skin) a bit more
-        let s = Math.max(Math.abs(r-l)*2, Math.abs(g-l), Math.abs(b-l)),
-            v = Math.max(0.5-s, 0)*vibrance*2;
-        r += (r-l)*v;
-        g += (g-l)*v;
-        b += (b-l)*v;
+        // based on darktables velvia iop
+        let pmax = Math.max(r, g, b);
+        let pmin = Math.min(r, g, b);
+        let plum = (pmax + pmin) / 2;
+        let psat = plum < 0.5 ? (pmax - pmin) / (1e-5 + pmax + pmin)
+                              : (pmax - pmin) / (1e-5 + Math.max(0, 2 - pmax - pmin));
+        let vbias = 0.8;
+        let pweight = clamp(((1 - (1.5 * psat)) + ((1 + (Math.abs(plum - 0.5) * 2)) * (1 - vbias))) / (1 + (1 - vbias)), 0, 1);
+        let saturationVibrance = saturation + vibrance*pweight*2;
+
+
+        //let s = Math.max(Math.abs(r-l)*2, Math.abs(g-l), Math.abs(b-l)),
+            //v = Math.max(0.5-s, 0)*vibrance*2;
+        //r += (r-l)*v;
+        //g += (g-l)*v;
+        //b += (b-l)*v;
 
         // saturation
-        r += (r-l)*saturation;
-        g += (g-l)*saturation;
-        b += (b-l)*saturation;
+        r += (r-l)*saturationVibrance;
+        g += (g-l)*saturationVibrance;
+        b += (b-l)*saturationVibrance;
 
         // contrast
         r += (r-0.5)*contrast;

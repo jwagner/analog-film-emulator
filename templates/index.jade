@@ -21,8 +21,8 @@ html(lang="en")
         meta(name="description" content=description)
         meta(property="og:title" content="Free Online Analog Film Emulator")
         meta(property="og:url" content="http://29a.ch/film-emulator/")
-        meta(property="og:image" content="http://29a.ch/film-emulator/image.jpg")
-        link(rel='canonical', href='http://29a.ch/film-emulator/')
+        meta(property="og:image" content="https://29a.ch/film-emulator/image.jpg")
+        link(rel='canonical', href='https://29a.ch/film-emulator/')
         link(rel='prefetch' src='worker.js')
     body
         .app
@@ -95,7 +95,7 @@ html(lang="en")
                         label JPEG Export Quality
                             input(name='jpegQuality' type='number' value=90 min=50 max=100 step=1)
                     p
-                        label High Quality Preview (very slow)
+                        label High Quality Preview (slow)
                             input(name='highQualityPreview' type='checkbox' value='true')
                     p
                         label Show advanced controls
@@ -123,6 +123,9 @@ html(lang="en")
                         | <a href="http://gmic.eu/film_emulation/">G'MIC</a>
                         | by 
                         | <a href="http://blog.patdavid.net/2013/09/film-emulation-presets-in-gmic-gimp.html">Patrick David</a>.
+
+                    p
+                        | The vibrance slider is based on the velvia operation in <a href="https://www.darktable.org/">darktable</a>.
 
                     h3 FAQ
 
