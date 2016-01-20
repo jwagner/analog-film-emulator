@@ -132,6 +132,11 @@ canvas {
     cursor: pointer;
 }
 
+.help-dependency {
+    display: inline-block;
+    padding: 4px;
+}
+
 .app-content {
     display: flex;
     flex: 1;

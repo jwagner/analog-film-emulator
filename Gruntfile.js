@@ -71,6 +71,12 @@ grunt.initConfig({
     },
     jade: {
         main: {
+            options: {
+                data: {
+                    'pkg': '<%= pkg %>',
+                    fileRev: function(s){ return s; }
+                }
+            },
             files: [
                 {expand: true, dest:'public/', cwd: 'templates/', src:'**/*.jade', filter: 'isFile', ext: '.html'}
             ]

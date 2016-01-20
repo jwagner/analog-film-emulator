@@ -3,7 +3,7 @@ html(lang="en")
     head
         meta(charset="utf-8")
         meta(http-equiv="X-UA-Compatible" content="IE=edge")
-        link(href='//fonts.googleapis.com/css?family=Open+Sans:300,400', rel='stylesheet', type='text/css')
+        link(href='//fonts.googleapis.com/css?family=Open+Sans:300,400,700', rel='stylesheet', type='text/css')
         link(rel='stylesheet', href='app.css')
         meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
         link(rel="favicon" href="logo-256.png")
@@ -115,6 +115,7 @@ html(lang="en")
                         .button.editor-action Close
 
                 .help.dialog(style='display:none')
+                    h2 Film Emulator
                     p
                         | This is a little toy made by <a href="http://29a.ch/">Jonas Wagner</a>.
                         | You can read a bit more about it in this <a href="http://29a.ch/2015/06/07/javascript-film-emulation/">blog post</a>. You can find its source code on <a href='https://github.com/jwagner/analog-film-emulator/'>github</a>.
@@ -124,8 +125,10 @@ html(lang="en")
                         | by 
                         | <a href="http://blog.patdavid.net/2013/09/film-emulation-presets-in-gmic-gimp.html">Patrick David</a>.
 
+
                     p
                         | The vibrance slider is based on the velvia operation in <a href="https://www.darktable.org/">darktable</a>.
+
 
                     h3 FAQ
 
@@ -141,6 +144,22 @@ html(lang="en")
                         | quality format you can use is 24-bit PNG. PNG images are also saved as PNG to minimize losses.
                         | If you need support for higher bit depths or RAW please have a look at
                         | the <a href="http://gmic.eu/film_emulation/">gmic plugin</a> for the gimp.
+
+                    h3 Changelog
+                    h3 2016-01-20
+                    p Changed vibrance algorithm to something inspired by <a href="https://www.darktable.org/2011/10/different-kind-of-saturation/">darktables velvia</a>.
+
+                    h3 Open Source Libraries used
+                    p
+                        | This software was built using the following open source components.
+                        | I want to thank all of their authors for making my life easier, and projects like this possible.
+
+                    ul
+                        - each dependency in Object.keys(pkg.devDependencies).concat(Object.keys(pkg.dependencies)).sort()
+                            li.help-dependency
+                                a(href='https://www.npmjs.com/package/' + dependency rel='nofollow')
+                                    = dependency
+
 
                     |<strong>Disclamer</strong>: The trademarked names which may appear in the names of the film emulation CLUT (color lookup table) are there for informational purposes only. They serve only to inform the user which film stock the given CLUT is designed to approximate. As there is no way to convey this information other than by using the trademarked name, we believe this constitutes fair use. Neither the publisher nor the authors are affiliated with or endorsed by the companies that own the trademarks.
                     .action

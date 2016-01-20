@@ -184,7 +184,7 @@ export function adjust(out, image, brightness, contrast, saturation, vibrance, b
                               : (pmax - pmin) / (1e-5 + Math.max(0, 2 - pmax - pmin));
         let vbias = 0.8;
         let pweight = clamp(((1 - (1.5 * psat)) + ((1 + (Math.abs(plum - 0.5) * 2)) * (1 - vbias))) / (1 + (1 - vbias)), 0, 1);
-        let saturationVibrance = saturation + vibrance*pweight*2;
+        let saturationVibrance = saturation + vibrance*pweight;
 
 
         //let s = Math.max(Math.abs(r-l)*2, Math.abs(g-l), Math.abs(b-l)),
