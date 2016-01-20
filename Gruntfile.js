@@ -35,7 +35,13 @@ grunt.initConfig({
             },
             files: {
                 'release/app.js': ['src/release.js', 'src/main.js'],
-                'release/worker.js': ['src/worker.js']
+                'release/worker.js': ['src/worker.js'],
+                'release/service-worker.js': ['src/service-worker.js']
+            }
+        },
+        serviceWorker: {
+            files: {
+                'public/service-worker.js': ['src/service-worker.js']
             }
         },
         worker: {
@@ -145,7 +151,8 @@ grunt.initConfig({
         release: {
             files: {
                 'release/app.js': 'release/app.js',
-                'release/worker.js': 'release/worker.js'
+                'release/worker.js': 'release/worker.js',
+                'release/service-worker.js': 'release/service-worker.js'
             }
         }
     },
@@ -183,6 +190,10 @@ grunt.initConfig({
             options: {
                 //spawn: true
             }
+        },
+        browserifyServiceWorker: {
+            files: ['src/service-worker.js'],
+            tasks: ['browserify:serviceWorker']
         },
         browserifyworker: {
             files: ['src/worker.js', 'src/image-processing.js'],

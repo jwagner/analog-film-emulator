@@ -282,6 +282,14 @@ canvas {
     margin-top: 0.5em;
 }
 
+.settings-error {
+    margin-left: 1em;
+}
+
+.settings-error > strong {
+    color: #f11;
+}
+
 @media all and (max-width: 980px) {
     .google-plus-one {
         display: none !important;

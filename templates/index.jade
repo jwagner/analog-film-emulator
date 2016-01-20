@@ -92,6 +92,12 @@ html(lang="en")
 
                 .settings.dialog(style='display: none;')
                     p
+                        label Enable Offline Mode (experimental)
+                            input(name='offlineMode' type='checkbox' value='true')
+                        .offline-mode-unavailable.settings-error(style='display:none')
+                            strong Your browser does not support the technology (service workers) required for offline mode. 
+                            <br>Try the most recent version of Google Chrome. Support for Firefox is coming soon.
+                    p
                         label JPEG Export Quality
                             input(name='jpegQuality' type='number' value=90 min=50 max=100 step=1)
                     p

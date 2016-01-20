@@ -7,6 +7,7 @@ public/app.css.map
 public/clut
 public/index.html
 public/worker.js
+public/service-worker.js
 public/logo*
 public/favicon.ico
 src/clut.json

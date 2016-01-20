@@ -1,10 +1,14 @@
 import $ from 'jquery';
+
+import * as offline from './offline';
+
 const SETTINGS_KEY = 'ch.29a.filmEmulator.settings';
 export default class Settings {
     constructor(el) {
         this.el = el;
         this.data = {};
         this.controls = {
+            offlineMode: $('input[name="offlineMode"]', this.el),
             jpegQuality: $('input[name="jpegQuality"]', this.el),
             highQualityPreview: $('input[name="highQualityPreview"]', this.el),
             showAdvancedControls: $('input[name="showAdvancedControls"]', this.el)
@@ -25,6 +29,11 @@ export default class Settings {
                     this.controls.jpegQuality.val(data.jpegQuality*100);
                     this.controls.highQualityPreview.prop('checked', data.highQualityPreview);
                     this.controls.showAdvancedControls.prop('checked', data.showAdvancedControls);
+                    this.controls.offlineMode.prop('checked', data.offlineMode);
+                    if(!offline.supported){
+                        this.controls.offlineMode.prop('disabled', true);
+                        $('.offline-mode-unavailable', this.el).show();
+                    }
                 }
             }
         }
@@ -47,6 +56,7 @@ export default class Settings {
         this.data.jpegQuality = this.controls.jpegQuality.val()*0.01;
         this.data.highQualityPreview = this.controls.highQualityPreview.prop('checked');
         this.data.showAdvancedControls = this.controls.showAdvancedControls.prop('checked');
+        this.data.offlineMode = this.controls.offlineMode.prop('checked');
         this.save();
         this.onchange(this.data);
     }
