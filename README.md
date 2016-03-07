@@ -13,7 +13,7 @@ You can also read my [blog post](http://29a.ch/2015/06/07/javascript-film-emulat
 Copyright © 2015 Jonas Wagner. All rights reserved.
 
 **This code is not licensed under an open source license** and does not come with all the data files in order
-to prevent lazy people from just copying everything and pretending it is their own work. You are of course free to study the code and takes bits and pieces, I consider this fair use.
+to prevent lazy people from just copying everything and pretending it is their own work. You are of course free to study the code and take bits and pieces, I consider this fair use.
 Just attribute them to me properly.
 If you have grander plans for it and the lack of a license prevents you from following up on them feel free to [contact me](http://29a.ch/about).
 
