@@ -13,6 +13,7 @@ class Controls {
         this.basicControls = ['clut', 'brightness', 'contrast', 'temperature', 'vibrance', 'grain', 'vignette', 'lightLeak'];
         this.inputs = [
             new ClutControl('clut', 'Film'),
+            new RangeControl('clutMix', 'Film Effect Strength', 0.0, 1.0, 1.0),
             new RangeControl('grain', 'Grain', 0, 0.5, 0),
             new RangeControl('grainScale', 'Grain Scale', 0.01, 2, 1),
             new RangeControl('vignette', 'Vignette', 0, 10, 0),
@@ -46,7 +47,7 @@ class Controls {
         $(el).append(this.inputs.map((e) => e.el));
         $('input,select', el).change((e) => {
             if(e.target && e.target.name){
-                trackEvent({action: 'changeParameter', label: e.target.name, interaction: true}); 
+                trackEvent({action: 'changeParameter', label: e.target.name, interaction: true});
             }
             return this.change();
         });

@@ -214,7 +214,7 @@ export function adjust(out, image, brightness, contrast, saturation, vibrance, b
     console.timeEnd('adjust');
 }
 
-export function mapColorsFast(out, image, clut){
+export function mapColorsFast(out, image, clut, clutMix){
     console.time('mapColorsFast');
     let od = out.data,
         id = image.data,
@@ -225,6 +225,7 @@ export function mapColorsFast(out, image, clut){
         cs = cl*cl,
         cs1 = cs-1;
 
+    var x0 = 1 - clutMix, x1 = clutMix;
     for(var y = 0; y < h; y++) {
         for(var x = 0; x < w; x++) {
             let i = (y*w+x)*4,
@@ -234,9 +235,9 @@ export function mapColorsFast(out, image, clut){
                 a = id[i+3]/255,
                 ci = (dither(b)*cs*cs+dither(g)*cs+dither(r))*4;
 
-            od[i] = cd[ci];
-            od[i+1] = cd[ci+1];
-            od[i+2] = cd[ci+2];
+            od[i] = id[i]*x0 + x1*cd[ci];
+            od[i+1] = id[i+1]*x0 + x1*cd[ci+1];
+            od[i+2] = id[i+2]*x0 + x1*cd[ci+2];
             od[i+3] = a*255;
         }
     }
@@ -247,7 +248,7 @@ export function noisy(n){
     return Math.min(Math.max(0, n+Math.random()-0.5), 255);
 }
 
-export function mapColors(out, image, clut){
+export function mapColors(out, image, clut, clutMix){
     console.time('mapColors');
     let od = out.data,
         id = image.data,
@@ -304,9 +305,11 @@ export function mapColors(out, image, clut){
             t = r-r0;
             rgbLerp(r_min_g_min_b_min, r_min_g_min_b_min, r_max_g_min_b_min, t);
 
-            od[i] = (r_min_g_min_b_min[0]);
-            od[i+1] = (r_min_g_min_b_min[1]);
-            od[i+2] = (r_min_g_min_b_min[2]);
+            let x0 = 1 - clutMix, x1 = clutMix;
+
+            od[i] = id[i]*x0 + (r_min_g_min_b_min[0])*x1;
+            od[i+1] = od[i+1]*x0 + (r_min_g_min_b_min[1])*x1;
+            od[i+2] = od[i+2]*x0 + (r_min_g_min_b_min[2])*x1;
             od[i+3] = a*256;
         }
     }
@@ -341,10 +344,10 @@ export function processImage(data, slice, options){
     }
     if(options.clut){
         if(options.highQuality){
-            mapColors(data, data, options.clut);
+            mapColors(data, data, options.clut, options.clutMix);
         }
         else {
-            mapColorsFast(data, data, options.clut);
+            mapColorsFast(data, data, options.clut, options.clutMix);
         }
     }
     if(options.lightLeak && options.lightLeak.seed > 0){

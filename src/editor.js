@@ -59,6 +59,7 @@ export default class Editor {
             return {
                 clut: clut,
                 highQuality: this.highQualityPreview,
+                clutMix: o.clutMix,
                 brightness: o.brightness,
                 saturation: o.saturation,
                 contrast: o.contrast,
